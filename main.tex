@@ -1,0 +1,60 @@
+\documentclass[ti,a4paper,11pt,oneside,openany]{uantwerpenbamathesis}
+\usepackage[english]{babel}
+\usepackage[backref,hyperindex=true,pagebackref=true]{hyperref}
+\bamadegree{ti-en-ba-ei}
+\degree{Bachelor of Science in de industriële wetenschappen: elektronica-ICT}
+\title{3D Surface Reconstruction from Optical Flat Measurements} %% either don't split titles, or do so with hyphen
+                     %% and a newline
+\author{Ahmad Shakleya}
+\supervisor{prof. dr. ing. J. Steckel}{Cosys, UAntwerpen}
+\cosupervisor{ing. A. Aerts}{Service Group Materials, UAntwerpen}
+\academicyear{2023 - 2024}
+%%\companylogo{\includegraphics[width=4.5cm,height=2.5cm,keepaspectratio]{companylogo.jpg}} --> Cosys logo
+
+
+\usepackage{mathptmx}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csquotes}
+\usepackage[toc,page]{appendix}
+%\usepackage[style=apa,backend=biber]{biblatex}
+%\addbibresource{Bibliography.bib}
+\bibliographystyle{IEEEtran}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{subfiles}
+
+\graphicspath{./Images/}
+
+\sisetup
+  {
+    exponent-to-prefix = true,
+    round-mode         = places,
+    round-precision    = 2,
+    scientific-notation = engineering,
+    zero-decimal-to-integer = true,
+  }
+
+\begin{document}
+    \maketitle
+    \frontmatter
+    \tableofcontents
+    \mainmatter
+    \subfile{Sections/Preamble_own}
+    \subfile{Sections/0_abstract}
+    \subfile{Sections/1_introduction}
+    \subfile{Sections/2_research_questions}
+    \subfile{Sections/3_methods_and_materials}
+    \subfile{Sections/4_results}
+    \subfile{Sections/5_discussion}
+    \subfile{Sections/6_conclusion}
+    \bibliography{Bibliography}
+    \addcontentsline{toc}{chapter}{Bibliography}
+    \appendix
+    \subfile{Sections/7_references}
+\end{document}
+
+\endinput

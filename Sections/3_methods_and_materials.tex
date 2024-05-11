@@ -1,0 +1,23 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\chapter{Methods and Materials}
+
+\section{Initial Approach Using Ray Tracing in C++}
+Initially, the simulation of optical flat measurements was attempted using a ray tracing technique in C++. Ray tracing is a powerful computational method for simulating the path of light through media. It models the propagation of light rays and their interactions with surfaces, which is particularly useful in optical studies where the understanding of light behavior in precise environments is necessary. However, this approach did not yield successful results due to complexities in accurately modeling the intricate interference patterns that are critical in optical flat evaluations.
+
+\section{Successful Simulation Using Python}
+After the initial setbacks, a more successful simulation was developed using Python. This method utilized the concept of intersecting planes with the test surface. Each plane was separated by half the wavelength of the light transmitted through the optical flat, allowing for the simulation of interference patterns by modeling how these planes interact with the surface irregularities.
+
+\subsection{Python Scripts and GUI Development}
+To implement this method, several Python scripts were created:
+\begin{itemize}
+    \item \textbf{Intersection.py} - Handles the mathematical computation of plane and surface intersections.
+    \item \textbf{Gui.py} - A graphical user interface was developed to facilitate the interaction with the simulation, allowing users to adjust parameters and visualize results in real-time.
+    \item \textbf{Creating\_image.py, Disk.py, Cylinder.py, Flat\_surface.py, Shape3D.py, STLFigure.py} - These scripts contribute to generating and handling various geometrical shapes and rendering the final 3D images which represent the simulation results.
+\end{itemize}
+
+\section{Discussion}
+This method of using planes separated by specific intervals corresponding to the light wavelength proved effective in simulating the necessary conditions to study optical flats. The Python environment, complemented by a user-friendly GUI, enhanced the flexibility and accessibility of the simulation, making it a robust tool for both educational and research applications in optical measurements.
+
+\end{document}
