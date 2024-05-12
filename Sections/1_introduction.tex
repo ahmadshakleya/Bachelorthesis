@@ -3,20 +3,20 @@
 \begin{document}
 
 \chapter{Introduction}
-Optical flats are precision devices used in the field of material science to measure the flatness of surfaces or to create precisely flat surfaces. An optical flat is typically a high-quality, polished, flat glass or quartz disc used in conjunction with monochromatic light to form interference fringes that can be observed and measured to assess surface flatness or quality.\footnote{Optical flats should be handled with great precaution as they are very fragile.} \cite{edmund_optics_optical_flats, kemet_optical_flats, lapmaster_wolters_optical_flats,Paschottaoptical_flats}
+Optical flats are precision devices used in the field of material science to measure the flatness of surfaces or to create precisely flat surfaces. An optical flat is typically a high-quality, polished, flat glass or quartz disc used in conjunction with monochromatic light to form interference fringes that can be observed and measured to assess surface flatness or quality.\footnote{Optical flats should be handled with great precaution as they are very fragile.} \cite{Toru_2017, edmund_optics_optical_flats, kemet_optical_flats, lapmaster_wolters_optical_flats,Paschottaoptical_flats}
 
 \begin{frame}{}
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.8\textwidth]{Images/Introduction/optical_flat}
-        \caption{Example of an optical flat \cite{optical_flat_mitutoyo}}
+        \caption{Example of an optical flat.\cite{optical_flat_mitutoyo}}
         \label{fig:optical_flat_example}
     \end{figure}
 \end{frame}
 
 \section{Physical Characteristics}
 \subsection{Material Composition}
-Optical flats are predominantly made from two types of materials: fused silica and ultra-low expansion (ULE) glass. Fused silica, known for its exceptional optical clarity and thermal stability, is ideal for precision measurement tools. It has a very low coefficient of thermal expansion, which means it remains stable under varying temperatures, thereby minimizing measurement errors due to thermal variations.\cite{Paschottafused_silica}
+Optical flats are predominantly made from two types of materials: fused silica and ultra-low expansion (ULE) glass. Fused silica, known for its exceptional optical clarity and thermal stability, is ideal for precision measurement tools. It has a very low coefficient of thermal expansion, which means it remains stable under varying temperatures, thereby minimizing measurement errors due to thermal variations (figure \ref{fig:refractive_index_silica}).\cite{Paschottafused_silica}
 
 \begin{frame}{}
     \begin{figure}[h]
@@ -261,5 +261,106 @@ Recent advancements have expanded the traditional concept of optical flats to in
 
 \subsection{Phase Measuring Deflectometry}
 A novel approach in the measurement of optical flats involves Phase Measuring Deflectometry (PMD), which offers a flexible and cost-effective alternative to interferometry. PMD uses a triangulation method involving a pinhole camera and LCD display to generate sinusoidal fringes, which are reflected by the flat surface. Distortions in these fringes are then captured and analyzed to determine the surface's figure. This technique is particularly advantageous for measuring surfaces where high slopes at edges or environmental sensitivities present challenges to traditional methods. The integration of PMD into optical flat metrology represents a significant shift towards more dynamic and accessible measurement technologies.\cite{WOS:000385319500019}
+
+\section{Fringe Analysis in Optical Metrology}
+
+Fringe analysis is an indispensable technique in the field of optical metrology, providing a non-intrusive means to capture and quantify physical phenomena with high precision. This method leverages the wave nature of light to generate fringe patterns, which are essentially contour maps representing variations in optical path length due to changes in physical properties like surface height, deformation, and refractive index changes.
+
+The principle behind fringe analysis involves the interaction of light waves either through interference in interferometry or through projection in fringe projection techniques. In both instances, the resulting fringe patterns contain encoded information about the object's surface or the physical phenomenon being studied. The challenge, however, lies in converting these fringe patterns into quantitative data, a process that is achieved through various computational methods.
+
+This chapter was mainly inspired by \texttt{Chapter 21: Fringe Analysis} in \texttt{Handbook of Optical Metrology by Toru Yoshizawa}\cite{fringe_analysis}
+
+\subsection{Techniques in Fringe Analysis}
+Two primary approaches define the landscape of fringe analysis:
+
+\begin{enumerate}
+    \item \textbf{Multiple-Input Image Techniques:} This approach utilizes multiple images of the fringe pattern, each obtained at a different phase shift. Common methods include the phase-shifting technique, where the phase of the reference beam is varied systematically to produce different fringe patterns, and the fringe scanning method, where the object or the fringe generator itself is moved to vary the fringe pattern.
+    \item \textbf{Single-Input Image Techniques:} In scenarios where dynamic measurements are required, or it is impractical to obtain multiple images, single-input image techniques are employed. The Fourier Transform method is the most notable, using a single image with carrier fringes to extract phase information through spatial frequency analysis. We will elaborate more on this in the following section.
+\end{enumerate}
+
+\subsection{Fourier Transform Method}
+The Fourier Transform (FT) method of fringe analysis represents a significant advancement in the field of optical metrology, particularly for dynamic measurements where the acquisition of multiple sequential images is impractical. This method, utilizing a single fringe image with carrier fringes, simplifies the setup and accelerates data processing, making it ideal for real-time applications.
+
+\subsubsection{Principle of Operation}
+The FT method involves the acquisition of a single fringe pattern that includes high-frequency carrier fringes. These carrier fringes are typically introduced by slightly tilting a reference beam in an interferometer setup, resulting in a fringe pattern with a well-defined spatial frequency. The mathematical basis of this approach is to model the intensity distribution of the fringe pattern as a sum of sinusoidal functions whose amplitudes encode the phase information of the surface being analyzed.
+
+\begin{equation}
+    I(x, y) = a(x, y) + b(x, y) \cos[2\pi f(x, y) + \phi(x, y)]
+\end{equation}
+
+Here, \( I(x, y) \) represents the recorded intensity, \( a(x, y) \) is the background illumination, \( b(x, y) \) denotes the amplitude of the modulation, \( f(x, y) \) is the carrier frequency, and \( \phi(x, y) \) is the phase to be recovered.
+
+\subsubsection{Fourier Transform and Filtering}
+The core step in the FT method is the Fourier transform of the recorded intensity distribution, which separates the frequency components. The high spatial frequency of the carrier fringes ensures their separation from the lower spatial frequency background. By filtering and isolating the frequency component corresponding to the carrier fringes, the phase information embedded in the fringes can be extracted effectively.
+
+\begin{equation}
+    \hat{I}(f_x, f_y) = \mathcal{F}\{I(x, y)\}
+\end{equation}
+
+Here, \( \hat{I}(f_x, f_y) \) represents the Fourier transform of the intensity distribution. Filtering around the carrier frequency \( f_0 \) isolates the relevant phase information.
+
+\begin{frame}{}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/Introduction/fourier_transform}
+        \caption{1D Signal processing flow in FT method. This procedure can easily be extended to the 2D FT and filtering in a 2D frequency space.\cite{fringe_analysis}}
+        \label{fig:fourier_transform}
+    \end{figure}
+\end{frame}
+
+\subsubsection{Phase Demodulation and Reconstruction}
+After filtering, the isolated component is shifted to zero frequency, and an inverse Fourier transform is applied to reconstruct the phase-modulated image. The phase at each point of the image can then be calculated using the arctan function applied to the real and imaginary parts of the reconstructed image.
+
+\begin{equation}
+    \phi(x, y) = \arctan\left(\frac{\text{Im}[\mathcal{F}^{-1}(\hat{I}(f_x, f_y))]}{\text{Re}[\mathcal{F}^{-1}(\hat{I}(f_x, f_y))]}\right)
+\end{equation}
+
+This reconstructed phase map provides a direct measurement of the optical path differences induced by the object's surface, translating physical deformations into measurable phase shifts.
+
+\subsubsection{Rationale for Using the Fourier Transform Method}
+The adoption of the Fourier Transform (FT) method in fringe analysis is driven by several practical and academic motivations, particularly suited to scenarios where obtaining multiple images with varied fringe patterns is challenging. One such scenario is when using an optical flat, which typically produces only one image. The inherent difficulty in capturing multiple images with different fringe patterns at the exact same position makes the FT method highly valuable. This method can extract detailed phase information from a single static image, circumventing the need for moving the setup to introduce different phase shifts, which is often impractical or impossible with an optical flat.
+
+Additionally, my interest in applying signal processing techniques beyond theoretical mathematics classes has led me to explore the use of Fourier Transform in a practical, real-world application. The FT method offers a profound application of Fourier analysis, allowing the decomposition of an image into its frequency components. This not only aids in isolating the phase information crucial for metrological assessments but also reinforces the foundational signal processing principles by applying them to solve complex engineering problems.
+
+\subsection{Phase Unwrapping}
+Phase unwrapping is an essential process in fringe analysis, addressing the intrinsic limitation where phase measurements are typically confined within a $[-\pi, \pi]$ interval, known as phase wrapping. This phenomenon occurs because the phase response of the imaging system is cyclic, with each cycle representing a change in phase of $2\pi$. Hence, any phase change beyond this range results in a modulo $2\pi$ calculation, which can obscure the true phase changes caused by the physical properties of the object being studied.
+
+\begin{frame}{}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/Introduction/phase_unwrapping}
+        \caption{Phase unwrapping.\cite{fringe_analysis}}
+        \label{fig:phase_wrapping}
+    \end{figure}
+\end{frame}
+
+\subsubsection{Challenges of Phase Wrapping}
+In practical applications, such as 3D surface profiling or deformation analysis, this wrapping effect can create discontinuities in the computed phase map, appearing as abrupt jumps from $-\pi$ to $\pi$ and vice versa. These discontinuities can significantly distort the resulting measurements, making it impossible to directly infer the true topographical features of the surface under investigation without additional processing.
+
+\subsubsection{Unwrapping Algorithms}
+Phase unwrapping seeks to mitigate these issues by reconstructing the original phase distribution that extends beyond the $[-\pi, \pi]$ range. The process involves algorithmically adding or subtracting $2\pi$ where necessary to eliminate the discontinuities, thereby 'unwrapping' the phase to reflect the true surface characteristics.
+
+\subsubsection{Simple Phase Unwrapping Using Adjacent Pixel Comparison}
+In the most straightforward cases of phase unwrapping, the goal is to correct phase discontinuities along a specified path, typically one-dimensional, across the image. This method involves comparing the phase values of adjacent pixels and making corrections when abrupt changes are detected that indicate wrapping. The process is governed by the following set of rules:
+
+\begin{equation}
+    \phi_{\text{unwrapped}}(i) = 
+    \begin{cases} 
+    \phi(i) - 2\pi & \text{if } \phi(i) - \phi(i-1) > \pi \\
+    \phi(i) + 2\pi & \text{if } \phi(i) - \phi(i-1) < -\pi \\
+    \phi(i) & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+where \( \phi(i) \) is the wrapped phase at pixel \( i \) and \( \phi_{\text{unwrapped}}(i) \) is the corrected phase value. This method assumes a sequential progression through the image pixels, typically from left to right or top to bottom.
+
+Phase unwrapping can be particularly challenging in scenarios where fringe patterns are surrounded by nonrectangular boundaries or contain singular points—locations where the fringe modulation is very low or the phase differences exceed \(2\pi\). In such cases, the phase unwrapping path may be accidentally interrupted, leading to deviations from the true phase distribution. To address these complexities, several robust algorithms have been developed:
+
+\begin{itemize}
+    \item \textbf{Minimum-Spanning Tree (MST) Algorithms:} These methods create a continuous phase-unwrapping path by spanning the effective phase area with tree-like trajectories. They are designed to avoid creating localized loops and use cost functions such as the spatial phase gradient and fringe contrast to assess and ensure the reliability of the pixels. Unreliable pixels are identified and removed from the spanning tree, facilitating a smoother unwrapping process.
+    \item \textbf{Energy Minimization Algorithms:} This approach involves minimizing an energy function that quantifies the discontinuities in the phase map. The algorithm iteratively adjusts the phases by \( \pm 2\pi \) to reduce the total energy, aiming for a state where the sum of squared differences of neighboring pixels is minimized. This method is particularly effective as it does not rely on a predefined path and can adapt to the local characteristics of the phase data.
+    \item \textbf{Error Correction and Singular Point Handling:} Before unwrapping, it is crucial to identify and address singular points where errors are likely due to low modulation or high noise. Techniques include using local operations to assess the consistency of the phase differences around these points. If necessary, lines connecting points of opposite discontinuity signs are established as boundaries not to be crossed during the unwrapping process.
+\end{itemize}
+
 
 \end{document}
