@@ -32,15 +32,53 @@ To implement this method, several Python scripts were created:
 \paragraph{Geometric Shape Scripts}
 The scripts \texttt{Disk.py}, \texttt{Cylinder.py}, and \texttt{Flat\_surface.py} define various geometric shapes used in the simulation. Each of these scripts inherits from the \texttt{Shape3D.py} class, which establishes a common structure and methods for geometric operations. This inheritance ensures that all shapes behave consistently under the simulation protocols and can be used interchangeably with the same set of operations, particularly with \texttt{Intersection.py}.
 
+\texttt{STLFigure.py} plays a pivotal role in the system by facilitating both the import and export of 3D models in the STL format. This functionality allows users not only to export simulated shapes for 3D printing but also to import existing STL files into the simulation for further analysis. The script ensures that conversions maintain the structural integrity of 3D models, preparing them for both digital simulation and physical reproduction.
+
 \paragraph{Intersection Calculations}
-\texttt{Intersection.py} is crucial for the simulation as it calculates the points of intersection between two \texttt{Shape3D} objects. This capability is vital for simulating how light interacts with different surfaces, affecting the resulting interference patterns. By leveraging polymorphism, \texttt{Intersection.py} can operate on any objects derived from \texttt{Shape3D}, allowing for flexibility and extensibility in the types of objects and interactions that can be simulated.
+\texttt{Intersection.py} is crucial for the simulation as it calculates the points of intersection between two \texttt{Shape3D} objects. This capability is vital for simulating how light interacts with different surfaces, affecting the resulting interference patterns. By leveraging polymorphism, \texttt{Intersection.py} can operate on any objects derived from \texttt{Shape3D}, allowing for flexibility and extensibility in the types of objects and interactions that can be simulated. The algorithm is explained in the following flowchart.
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2cm]
+\node (start) [startstop] {Start};
+\node (in1) [io, below of=start] {Input: shape1, shape2};
+\node (pro1) [process, below of=in1] {Get surface points for both shapes};
+\node (dec1) [decision, below of=pro1, yshift=-1.5cm] {Point within surface bounds?};
+\node (pro2a) [process, below of=dec1, yshift=-1.5cm] {Find closest indices in surface grid};
+\node (dec2) [decision, below of=pro2a, yshift=-1cm] {Z-value intersection?};
+\node (pro2b) [process, below of=dec2, yshift=-1cm] {Record intersection point};
+\node (out1) [io, below of=pro2b] {Output: intersection points};
+\node (stop) [startstop, below of=out1] {Stop};
+
+\draw [arrow] (start) -- (in1);
+\draw [arrow] (in1) -- (pro1);
+\draw [arrow] (pro1) -- (dec1);
+\draw [arrow] (dec1) -- node[anchor=east] {yes} (pro2a);
+\draw [arrow] (dec1.east) -- ++(3,0) node[anchor=west] {no} |- (pro1.east);
+\draw [arrow] (pro2a) -- (dec2);
+\draw [arrow] (dec2) -- node[anchor=east] {yes} (pro2b);
+\draw [arrow] (dec2.east) -- ++(3,0) node[anchor=west] {no} |- (pro2a.east);
+\draw [arrow] (pro2b) -- (out1);
+\draw [arrow] (out1) -- (stop);
+\end{tikzpicture}
+\caption{Flowchart of the Intersection Calculation Process}
+\label{fig:flowchart1}
+\end{figure}
+
 
 \subsubsection{Graphical User Interface (GUI)}
 The GUI, developed primarily through \texttt{Gui.py}, is instrumental in allowing users to interactively modify simulation parameters and visualize results in real time. The GUI is structured into several tabs, each facilitating different aspects of the simulation:
 \begin{itemize}
     \item \textbf{File Tab} - Manages file operations like saving and loading simulation states.
-    \item \textbf{Insert Tab} - Allows users to insert objects into the simulation environment.
+    \item \textbf{Insert Tab} - Allows users to insert objects into the simulation environment. This tab includes multiple subtabs for each type of object that can be inserted, such as cylinders, disks, flat surfaces, and STL figures. Each subtab provides specialized controls and parameters appropriate for the specific type of object being added to the simulation.
     \item \textbf{View Tab} - Controls the visualization settings and perspectives.
+    \item \textbf{3D View Tab} - Provides a dynamic 3D visualization of the simulated environment. This tab allows users to view and interact with the 3D models they have inserted or created within the simulation. Users can rotate, zoom, and pan across different views to better understand the spatial relationships and geometry of the objects. The 3D View Tab is crucial for assessing the accuracy of the simulation and for making real-time adjustments to the models.
     \item \textbf{Help Tab} - Provides user assistance and documentation on how to use the simulation tools.
     \item \textbf{Log Tab} - Records and displays logs of user actions and system responses for troubleshooting and instructional purposes.
 \end{itemize}
