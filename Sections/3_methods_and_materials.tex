@@ -4,8 +4,6 @@
 \chapter{Methods and Materials}
 
 \section{Initial Approach Using Ray Tracing in \texttt{C++}}
-Initially, the simulation of optical flat measurements was attempted using a ray tracing technique in C++. Ray tracing is a powerful computational method for simulating the path of light through media. It models the propagation of light rays and their interactions with surfaces, which is particularly useful in optical studies where the understanding of light behavior in precise environments is necessary. However, this approach did not yield successful results due to complexities in accurately modeling the intricate interference patterns that are critical in optical flat evaluations.
-
 % Still need to cite references
 \textbf{Ray tracing} is a rendering technique that simulates the way light interacts with objects to generate images with high visual realism. Unlike rasterization, which is used in most real-time graphics, ray tracing calculates the color of pixels by tracing the path that light would take as it travels through a scene. This path is traced backwards from the viewer's eye to the light source, a method known as \textit{backward ray tracing}.
 
@@ -15,6 +13,8 @@ Ray tracing is computationally intensive because each ray may spawn new rays upo
 
 The development of more efficient algorithms and the advent of powerful hardware, such as GPUs that can perform ray tracing in real time, have expanded the use of ray tracing in real-time applications, including video games and interactive media. Ray tracing's ability to simulate complex interactions of light makes it a fundamental technique in the pursuit of photorealistic graphics in both cinematic and interactive applications.
 % Still need to cite references
+
+Initially, the simulation of optical flat measurements was attempted using a ray tracing technique in C++. Ray tracing is a powerful computational method for simulating the path of light through media. It models the propagation of light rays and their interactions with surfaces, which is particularly useful in optical studies where the understanding of light behavior in precise environments is necessary. However, this approach did not yield successful results due to complexities in accurately modeling the intricate interference patterns that are critical in optical flat evaluations.
 
 \section{Successful Simulation Using Python}
 After the initial setbacks, a more successful simulation was developed using Python. This method utilized the concept of intersecting planes with the surface under test (sft). Each plane was separated by half the wavelength of the light transmitted through the optical flat, allowing for the simulation of interference patterns by modeling how these planes interact with the surface irregularities.
@@ -26,5 +26,24 @@ To implement this method, several Python scripts were created:
     \item \textbf{Gui.py} - A graphical user interface was developed to facilitate the interaction with the simulation, allowing users to adjust parameters and visualize results in real-time.
     \item \textbf{Creating\_image.py, Disk.py, Cylinder.py, Flat\_surface.py, Shape3D.py, STLFigure.py} - These scripts contribute to generating and handling various geometrical shapes and rendering the final 3D images which represent the simulation results.
 \end{itemize}
+
+\subsubsection{Detailed Script Descriptions}
+
+\paragraph{Geometric Shape Scripts}
+The scripts \texttt{Disk.py}, \texttt{Cylinder.py}, and \texttt{Flat\_surface.py} define various geometric shapes used in the simulation. Each of these scripts inherits from the \texttt{Shape3D.py} class, which establishes a common structure and methods for geometric operations. This inheritance ensures that all shapes behave consistently under the simulation protocols and can be used interchangeably with the same set of operations, particularly with \texttt{Intersection.py}.
+
+\paragraph{Intersection Calculations}
+\texttt{Intersection.py} is crucial for the simulation as it calculates the points of intersection between two \texttt{Shape3D} objects. This capability is vital for simulating how light interacts with different surfaces, affecting the resulting interference patterns. By leveraging polymorphism, \texttt{Intersection.py} can operate on any objects derived from \texttt{Shape3D}, allowing for flexibility and extensibility in the types of objects and interactions that can be simulated.
+
+\subsubsection{Graphical User Interface (GUI)}
+The GUI, developed primarily through \texttt{Gui.py}, is instrumental in allowing users to interactively modify simulation parameters and visualize results in real time. The GUI is structured into several tabs, each facilitating different aspects of the simulation:
+\begin{itemize}
+    \item \textbf{File Tab} - Manages file operations like saving and loading simulation states.
+    \item \textbf{Insert Tab} - Allows users to insert objects into the simulation environment.
+    \item \textbf{View Tab} - Controls the visualization settings and perspectives.
+    \item \textbf{Help Tab} - Provides user assistance and documentation on how to use the simulation tools.
+    \item \textbf{Log Tab} - Records and displays logs of user actions and system responses for troubleshooting and instructional purposes.
+\end{itemize}
+This modular design ensures that users can easily navigate and utilize the simulation, enhancing both usability and educational value.
 
 \end{document}
