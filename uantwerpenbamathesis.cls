@@ -376,14 +376,14 @@
   \rfoot[]{\footnotesize\textcolor{maincolor}{\textbf{|}}~\thepage}
   \fi
   \fancypagestyle{plain}{\pagestyle{fancy}}
-  % \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+  % \patchcmd{\section}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
 }
 
 \newcommand{\@crnotice}{
   \@copyrightnotices
 }
 \addtokomafont{section}{\color{basecolor}}
-\addtokomafont{chapter}{\color{basecolor}}
+\addtokomafont{section}{\color{basecolor}}
 \renewcommand\maketitle{%
   \pagestyle{empty}
   \begin{titlepage}

@@ -1,4 +1,4 @@
-\documentclass[ti,a4paper,11pt,oneside,openany]{uantwerpenbamathesis}
+\documentclass[ti,a4paper,10pt,oneside,openany]{uantwerpenbamathesis}
 \usepackage[english]{babel}
 \usepackage[backref,hyperindex=true,pagebackref=true]{hyperref}
 \bamadegree{ti-en-ba-ei}
@@ -30,6 +30,9 @@
 \usetikzlibrary{shapes.geometric, arrows}
 \usepackage{subfiles}
 
+\usepackage{setspace}
+\usepackage{floatflt}
+
 \graphicspath{./Images/}
 
 \sisetup
@@ -55,7 +58,7 @@
     \subfile{Sections/5_discussion}
     \subfile{Sections/6_conclusion}
     \bibliography{Bibliography}
-    \addcontentsline{toc}{chapter}{Bibliography}
+    \addcontentsline{toc}{section}{Bibliography}
     \appendix
 \end{document}
 
