@@ -2,11 +2,10 @@
 
 \setstretch{0.1} % 
 
-\usepackage{wrapfig}
-
 \begin{document}
 
 \chapter{Introduction}
+%{\let\clearpage\relax\chapter{Introduction}}
 
 \vspace{-5pt}
 
@@ -76,18 +75,19 @@ Interference fringes are the result of the wave nature of light. When monochroma
 \subsubsection{Formation of Fringes}
 \vspace{-15pt}
 \begin{minipage}{\textwidth}
-\begin{wrapfigure}{r}{0.3\textwidth}%
+\begin{wrapfigure}{r}{0.4\textwidth}%
     \vspace{\dimexpr0.3\baselineskip-\topskip}%
+    \vspace{-2cm}
     \noindent
-    \includegraphics[width=0.3\textwidth]{Images/Introduction/Optical_flat_interference}
+    \includegraphics[width=0.4\textwidth]{Images/Introduction/Optical_flat_interference}
     \vspace{-8pt}
-    \caption{Formation of interference fringes due to the superposition of light waves.\cite{enwiki:1212101911}}
+    \caption{Interference patterns due to light waves reflecting off an optical flat. On the left, bright fringes represent "Constructive interference" where reflected waves are in phase, caused by an odd multiple of half the wavelength (\(\lambda\)/2), amplifying the light intensity. On the right, dark fringes indicate "Destructive interference" with waves 180 degrees out of phase due to an even multiple of \(\lambda\)/2, canceling out the light. A key feature is the 180-degree phase change at the boundary, crucial for the formation of these patterns. \cite{enwiki:1212101911}}
     \label{fig:interference_fringes}
 \end{wrapfigure}
 Consider a setup where an optical flat is placed upon a surface to be tested under a monochromatic light source (figure \ref{fig:interference_fringes}). The light waves reflect off both the bottom surface of the optical flat and the top surface of the test object. Due to differences in the path traveled by the light waves—owing to variations in the gap between the two surfaces—these waves will interfere when they recombine. The condition for constructive and destructive interference is given by the equations:
 \end{minipage}
 
-\begin{minipage}{0.6\textwidth}
+\begin{minipage}{0.55\textwidth}
 \begin{equation}
 2d \cos(\theta) = m\lambda, \quad \text{(constructive interference)}
 \end{equation}
@@ -96,7 +96,7 @@ Consider a setup where an optical flat is placed upon a surface to be tested und
 \end{equation}
 \end{minipage}
 \newline
-\begin{minipage}{0.7\textwidth}
+\begin{minipage}{0.6\textwidth}
 where:
 \begin{itemize}
     \setlength{\itemsep}{0.1mm}
@@ -106,12 +106,14 @@ where:
     \item \(\lambda\) is the wavelength of the light used.
 \end{itemize}
 
-\end{minipage}
+%\end{minipage}
 
-When we dive in deeper on the waves we can see the following: constructive interference occurs when the path difference between the two waves is an integer multiple of the wavelength. Superposition of the waves result in bright fringes. \cite{enwiki:1212101911}\\
+When we dive in deeper on the waves we can see the following: constructive interference occurs when the path difference between the two waves is an integer multiple of the wavelength. Superposition of the waves result in bright fringes. \cite{enwiki:1212101911}
+%\newline
+\end{minipage}
 \vspace{-5pt}
-%\begin{figure}[H]
-    %\centering
+\begin{figure}[H]
+    \centering
     %\hfill
     \begin{minipage}{0.49\textwidth}
     \begin{tikzpicture}
@@ -131,17 +133,17 @@ When we dive in deeper on the waves we can see the following: constructive inter
         axis lines=middle,
         enlargelimits,
         legend style={
-            at={(1.2,1.1)}, 
+            at={(1.2,1.3)}, 
             anchor=north east, 
-            draw=none, 
+            draw=none,
             fill=none, 
             text opacity=1, 
-            font=\footnotesize
+            font=\scriptsize
         },
-        height=4cm, width=8cm,
+        height=3cm, width=8cm,
         grid=major,
-        xlabel style={font=\footnotesize, anchor=east, xshift=1cm, yshift=0.15cm},
-        ylabel style={font=\footnotesize, anchor=west, xshift=-1.1cm}
+        xlabel style={font=\scriptsize, anchor=east, xshift=1cm, yshift=0.15cm},
+        ylabel style={font=\scriptsize, anchor=west, xshift=-1.1cm}
     ]
         % Wave 1
         \addplot[red, densely dashed] {0.5*sin(deg(x)) + 0.6};
@@ -174,32 +176,34 @@ When we dive in deeper on the waves we can see the following: constructive inter
         samples=1000,
         axis lines=middle,
         enlargelimits,
-        height=4cm, width=8cm,
+        height=3cm, width=8cm,
         grid=major,
         legend style={
-            at={(1.2,1)}, 
+            at={(1.2,1.)}, 
             anchor=north east, 
             draw=none, 
             fill=none, 
             text opacity=1, 
-            font=\footnotesize
+            font=\scriptsize
         },
-        xlabel style={font=\footnotesize, anchor=east, xshift=1cm, yshift=0.15cm},
-        ylabel style={font=\footnotesize, anchor=west, xshift=-1.1cm}
+        xlabel style={font=\scriptsize, anchor=east, xshift=1cm, yshift=0.15cm},
+        ylabel style={font=\scriptsize, anchor=west, xshift=-1.1cm}
     ]
         % Resultant Wave
         \addplot[red, thick] {0.5*sin(deg(x)) + 0.5*sin(deg(x))};
         \addlegendentry{Resultant wave}
     \end{axis}
     \end{tikzpicture}
-    \newline
+    %\newline
     \end{minipage}
-%\end{figure}
-
+    \vspace{-5pt}
+    \caption{2 lightwaves with the same phase resulting in a bright fringe.}
+\end{figure}
+\vspace{-15pt}
 Destructive interference, on the other hand, occurs when the path difference is a half-integer multiple of the wavelength, resulting in dark fringes.\cite{enwiki:1212101911}\\
 \vspace{-4pt}
-%\begin{figure}[H]
-%    \centering
+\begin{figure}[H]
+    \centering
 %    \hfill
     \begin{minipage}{0.49\textwidth}
     \centering
@@ -221,17 +225,17 @@ Destructive interference, on the other hand, occurs when the path difference is 
         axis lines=middle,
         enlargelimits,
         legend style={
-            at={(1.2,1.1)}, 
+            at={(1.2,1.3)}, 
             anchor=north east, 
             draw=none, 
             fill=none, 
             text opacity=1, 
-            font=\footnotesize
+            font=\scriptsize
         },
-        height=4cm, width=8cm,
+        height=3cm, width=8cm,
         grid=major,
-        xlabel style={font=\footnotesize, anchor=east, xshift=1cm, yshift=0.15cm},
-        ylabel style={font=\footnotesize, anchor=west, xshift=-1.1cm}
+        xlabel style={font=\scriptsize, anchor=east, xshift=1cm, yshift=0.15cm},
+        ylabel style={font=\scriptsize, anchor=west, xshift=-1.1cm}
     ]
         % Wave 1
         \addplot[red, densely dashed] {0.5*sin(deg(x)) + 0.6};
@@ -262,18 +266,18 @@ Destructive interference, on the other hand, occurs when the path difference is 
         samples=1000,
         axis lines=middle,
         enlargelimits,
-        height=4cm, width=8cm,
+        height=3cm, width=8cm,
         grid=major,
         legend style={
-            at={(1.2,1)}, 
+            at={(1.2,1.2)}, 
             anchor=north east, 
             draw=none, 
             fill=none, 
             text opacity=1, 
-            font=\footnotesize
+            font=\scriptsize
         },
-        xlabel style={font=\footnotesize, anchor=east, xshift=1cm, yshift=0.15cm},
-        ylabel style={font=\footnotesize, anchor=west, xshift=-1.1cm}
+        xlabel style={font=\scriptsize, anchor=east, xshift=1cm, yshift=0.15cm},
+        ylabel style={font=\scriptsize, anchor=west, xshift=-1.1cm}
     ]
         % Resultant Wave (Destructive)
         \addplot[red, thick] {round(0.5*sin(deg(x)) + 0.5*sin(deg(x) + 180))};
@@ -281,8 +285,10 @@ Destructive interference, on the other hand, occurs when the path difference is 
     \end{axis}
     \end{tikzpicture}
     \end{minipage}
-%\end{figure}
-\vspace{-10pt}
+    \vspace{-5pt}
+    \caption{2 lightwaves out of phase resulting in a dark fringe.}
+\end{figure}
+\vspace{-30pt}
 
 \subsubsection{Analysis of Fringe Patterns}
 \vspace{-8pt}
@@ -297,7 +303,7 @@ The pattern of the fringes provides information about the surface's properties:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{Images/Introduction/fringe_types2}
+    \includegraphics[width=0.4\textwidth]{Images/Introduction/fringe_types2}
     \vspace{-8pt}
     \caption{Different types of interference fringe patterns and what they indicate about surface characteristics.\cite{Joji_2023}}
     \label{fig:fringe-types}
@@ -385,12 +391,12 @@ Additionally, my interest in applying signal processing techniques beyond theore
 %\vspace{-8pt}
 \subsection{Phase Unwrapping}
 \vspace{-8pt}
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{wrapfigure}{r}{0.45\textwidth}
     %\centering
-    \vspace{-5cm}
-    \includegraphics[height=0.5\textwidth]{Images/Introduction/phase_unwrapping}
+    \vspace{-5.5cm}
+    \includegraphics[height=0.4\textwidth]{Images/Introduction/phase_unwrapping}
     \vspace{-8pt}
-    \caption{Phase unwrapping.\cite{fringe_analysis}}
+    \caption{Phase unwrapping: a fringe pattern above and a phase unwrapping diagram below. The fringe pattern consists of concentric circles representing equal phase levels, highlighted by specific points \(A\) and \(B\), and intersected by lines indicating fringe orders \(n = -1, 0, 1, 2\). Below, the phase \(\phi\) along the \(x\)-axis is initially depicted with jumps of \(2\pi\), typical in raw data from interferometric measurements. The phase unwrapping section smooths these jumps to create a continuous line, providing a clearer, more accurate representation of phase variations. \cite{fringe_analysis}}
     \label{fig:phase_wrapping}
 \end{wrapfigure}
 \begin{minipage}{0.5\textwidth}
@@ -416,12 +422,13 @@ In the most straightforward cases of phase unwrapping, the goal is to correct ph
     \phi(i) & \text{otherwise}
     \end{cases}
 \end{equation}
-
+\vspace{0.1cm}\newline
 where \( \phi(i) \) is the wrapped phase at pixel \( i \) and \( \phi_{\text{unwrapped}}(i) \) is the corrected phase value. This method assumes a sequential progression through the image pixels, typically from left to right or top to bottom.
-
+\vspace{0.2cm}\newline
 Phase unwrapping can be particularly challenging in scenarios where fringe patterns are surrounded by nonrectangular boundaries or contain singular points—locations where the fringe modulation is very low or the phase differences exceed \(2\pi\). In such cases, the phase unwrapping path may be accidentally interrupted, leading to deviations from the true phase distribution. To address these complexities, several robust algorithms have been developed:
 
 \begin{itemize}
+    \setlength{\itemsep}{0.1mm}
     \item \textbf{Minimum-Spanning Tree (MST) Algorithms:} These methods create a continuous phase-unwrapping path by spanning the effective phase area with tree-like trajectories. They are designed to avoid creating localized loops and use cost functions such as the spatial phase gradient and fringe contrast to assess and ensure the reliability of the pixels. Unreliable pixels are identified and removed from the spanning tree, facilitating a smoother unwrapping process.
     \item \textbf{Energy Minimization Algorithms:} This approach involves minimizing an energy function that quantifies the discontinuities in the phase map. The algorithm iteratively adjusts the phases by \( \pm 2\pi \) to reduce the total energy, aiming for a state where the sum of squared differences of neighboring pixels is minimized. This method is particularly effective as it does not rely on a predefined path and can adapt to the local characteristics of the phase data.
     \item \textbf{Error Correction and Singular Point Handling:} Before unwrapping, it is crucial to identify and address singular points where errors are likely due to low modulation or high noise. Techniques include using local operations to assess the consistency of the phase differences around these points. If necessary, lines connecting points of opposite discontinuity signs are established as boundaries not to be crossed during the unwrapping process.
