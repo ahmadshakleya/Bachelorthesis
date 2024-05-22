@@ -1,0 +1,74 @@
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=1cm, minimum height=1cm,text centered, draw=black, fill=red!30, font=\scriptsize]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2cm]
+\node (start) [startstop] {Start};
+\node (in1) [io, below of=start] {Input: shape1, shape2};
+\node (pro1) [process, below of=in1] {Get surface points for both shapes};
+\node (dec1) [decision, below of=pro1, yshift=-1.5cm] {Point within surface bounds?};
+\node (pro2a) [process, below of=dec1, yshift=-1.5cm] {Find closest indices in surface grid};
+\node (dec2) [decision, below of=pro2a, yshift=-1cm] {Z-value intersection?};
+\node (pro2b) [process, below of=dec2, yshift=-1cm] {Record intersection point};
+\node (out1) [io, below of=pro2b] {Output: intersection points};
+\node (stop) [startstop, below of=out1] {Stop};
+
+\draw [arrow] (start) -- (in1);
+\draw [arrow] (in1) -- (pro1);
+\draw [arrow] (pro1) -- (dec1);
+\draw [arrow] (dec1) -- node[anchor=east] {yes} (pro2a);
+\draw [arrow] (dec1.east) -- ++(3,0) node[anchor=west] {no} |- (pro1.east);
+\draw [arrow] (pro2a) -- (dec2);
+\draw [arrow] (dec2) -- node[anchor=east] {yes} (pro2b);
+\draw [arrow] (dec2.east) -- ++(3,0) node[anchor=west] {no} |- (pro2a.east);
+\draw [arrow] (pro2b) -- (out1);
+\draw [arrow] (out1) -- (stop);
+\end{tikzpicture}
+\caption{Flowchart of the Intersection Calculation Process}
+\label{fig:flowchart1}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1, transform shape, node distance=1cm, auto]
+    % Styles for flowchart elements
+    \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=0.5cm, minimum height=0.5cm,text centered, draw=black, fill=red!30, font=\scriptsize]
+    \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=0.5cm, minimum height=0.5cm, text centered, draw=black, fill=blue!30, font=\scriptsize]
+    \tikzstyle{process} = [rectangle, minimum width=0.5cm, minimum height=0.5cm, text centered, draw=black, fill=orange!30, font=\scriptsize]
+    \tikzstyle{decision} = [diamond, minimum width=0.5cm, minimum height=0.2cm, text centered, draw=black, fill=green!30, font=\scriptsize]
+    \tikzstyle{arrow} = [thick,->,>=stealth]
+    
+    % Nodes
+    \node (start) [startstop, xshift=-4cm] {Start};
+    \node (in1) [io, below of=start] {Input: shape1, shape2};
+    \node (pro1) [process, below of=in1] {Get surface points for both shapes};
+
+    \node (dec1) [decision, right of=start, xshift=4cm] {Point within surface bounds?};
+    \node (pro2a) [process, below of=dec1] {Find closest indices in surface grid};
+    \node (dec2) [decision, below of=pro2a] {Z-value intersection?};
+
+    \node (pro2b) [process, right of=dec1, xshift=4cm] {Record intersection point};
+    \node (out1) [io, below of=pro2b] {Output: intersection points};
+    \node (stop) [startstop, below of=out1] {Stop};
+    
+    % Arrows
+    \draw [arrow] (start) -- (in1);
+    \draw [arrow] (in1) -- (pro1);
+    \draw [arrow] (pro1.north east) -- ++(0,2) node[anchor=east] {} -- (dec1.west);
+    \draw [arrow] (dec1) -- node[anchor=east] {yes} (pro2a);
+    \draw [arrow] (dec1.west) -- ++(-1,0) node[anchor=west] {no} -- (pro1.east);
+    \draw [arrow] (pro2a) -- (dec2);
+    \draw [arrow] (dec2) -- node[anchor=east] {yes} (pro2b);
+    \draw [arrow] (dec2.east) -- ++(3,0) node[anchor=west] {no} |- (pro2a.east);
+    \draw [arrow] (pro2b) -- (out1);
+    \draw [arrow] (out1) -- (stop);
+    
+    \end{tikzpicture}
+    \caption{Flowchart of the Intersection Calculation Process}
+    \label{fig:flowchart1}
+    \end{figure}

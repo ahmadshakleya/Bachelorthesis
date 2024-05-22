@@ -1,102 +1,91 @@
 \documentclass[../main.tex]{subfiles}
 
-\setstretch{1.5} % Adjusted to improve document readability
+\setstretch{0.1} % Adjusted to improve document readability
 
 \begin{document}
 
 {\let\clearpage\relax\chapter{Methods and Materials}}
+\vspace{-5pt}
 \section{Initial Approach Using Ray Tracing in \texttt{C++}}
+\vspace{-15pt}
 \textbf{Ray tracing} is a rendering technique that simulates the way light interacts with objects to generate images with high visual realism. Unlike rasterization, which is used in most real-time graphics, ray tracing calculates the color of pixels by tracing the path that light would take as it travels through a scene. This path is traced backwards from the viewer's eye to the light source, a method known as \textit{backward ray tracing}.
 
 Initially, the simulation of optical flat measurements was attempted using a ray tracing technique in C++. Ray tracing is a powerful computational method for simulating the path of light through media. It models the propagation of light rays and their interactions with surfaces, which is particularly useful in optical studies where the understanding of light behavior in precise environments is necessary. However, this approach did not yield successful results due to complexities in accurately modeling the intricate interference patterns that are critical in optical flat evaluations.
-
+\vspace{-15pt}
 \section{Successful Simulation Using Python}
+\vspace{-15pt}
 After the initial setbacks, a more successful simulation was developed using Python. This method utilized the concept of intersecting planes with the surface under test (sft). Each plane was separated by half the wavelength of the light transmitted through the optical flat, allowing for the simulation of interference patterns by modeling how these planes interact with the sft irregularities.
-
+\vspace{-15pt}
 \subsection{Backend Development: Python Scripts}
+\vspace{-10pt}
 To implement this method, several Python scripts were created:
+\vspace{-4pt}
 \begin{itemize}
-    \item \textbf{Intersection.py} - Handles the mathematical computation of plane and surface intersections, critical for modeling how light interacts with different surfaces.
-    \item \textbf{Disk.py, Cylinder.py, Flat\_surface.py, Shape3D.py, STLFigure.py} - These classes contribute to generating and handling various geometrical shapes and rendering the final 3D images which represent the simulation results.
+    \setlength{\itemsep}{0.1mm}
+    \item \textbf{Intersection} - Handles the mathematical computation of plane and surface intersections, critical for modeling how light interacts with different surfaces.
+    \item \textbf{Disk, Cylinder, Flat\_surface, Shape3D, STLFigure} - These classes contribute to generating and handling various geometrical shapes and rendering the final 3D images which represent the simulation results.
 \end{itemize}
-
+\vspace{-15pt}
 \subsection{Frontend Development: Graphical User Interface (GUI)}
-A comprehensive GUI developed through \texttt{Gui.py} facilitates user interaction with the simulation, allowing for real-time adjustments and visualization of results. The GUI is structured into several functional tabs, each enhancing usability and educational value.
-
+\vspace{-15pt}
+A comprehensive GUI developed through \texttt{Gui.py} facilitates user interaction with the simulation, allowing for real-time adjustments and visualization of results. The GUI is structured into several functional tabs, each enhancing usability and educational value. Screenshots of the GUI can be found in the appendix.
+\vspace{-15pt}
 \subsubsection{GUI Components Detailed Descriptions}
+\vspace{-8pt}
 \paragraph{File Tab}
-The \texttt{gui\_FileTab.py} manages file operations such as importing and exporting configurations. Functions include:
+This tab manages file operations such as importing and exporting configurations. Functions include:
 \begin{itemize}
+    \setlength{\itemsep}{0.1mm}
     \item \textbf{Export Configuration} - Opens a file dialog to save configurations in JSON format. After selection, it executes the export shapes command and confirms the operation.
     \item \textbf{Import Configuration} - Similar to export, this function loads configurations from a JSON file, redraws shapes based on the new data, and confirms the import.
 \end{itemize}
-
+\vspace{-15pt}
 \paragraph{Insert Tab}
-The \texttt{gui\_InsertTab.py} facilitates the insertion of various 3D shapes into the simulation. It utilizes a Notebook widget to manage subtabs corresponding to different shape types:
-\begin{itemize}
-    \item Each subtab provides specialized controls for inserting and configuring objects such as cylinders, disks, flat surfaces, optical flats and STL figures.
-\end{itemize}
-
+This tab facilitates the insertion of various 3D shapes into the simulation. Each subtab provides specialized controls for inserting and configuring objects such as cylinders, disks, flat surfaces, optical flats and STL figures.
+\vspace{-15pt}
 \paragraph{View Tab}
-The \texttt{gui\_ViewTab.py} allows users to customize the visual aspects of the application, including:
-\begin{itemize}
-    \item \textbf{Color and Font Settings} - Users can modify the text color, background color, and font via color choosers and comboboxes.
-\end{itemize}
-
+This tab allows users to customize the visual aspects of the application: users can modify the text color, background color, and font.
+\vspace{-15pt}
 \paragraph{Help Tab}
-The \texttt{gui\_HelpTab.py} includes a PDF viewer for accessing documentation directly within the GUI:
-\begin{itemize}
-    \item Functions for navigating through documentation, zooming, and downloading the PDF are provided to help users effectively utilize the simulation tools.
-\end{itemize}
-
+This tab includes a PDF viewer for accessing documentation directly within the GUI so users can effectively utilize the simulation tool without Internet connection.
+\vspace{-15pt}
 \paragraph{Log Tab}
-The \texttt{gui\_LogTab.py} records and displays logs of user actions and system responses:
-\begin{itemize}
-    \item This functionality is essential for debugging and understanding the interactions within the application.
-\end{itemize}
-
+This tab records and displays logs of user actions and system responses.
+\vspace{-15pt}
 \paragraph{3D View Tab}
-\texttt{gui\_3DViewTab.py} provides a dynamic 3D visualization space where users can interact with the models:
-\begin{itemize}
-    \item Features include the ability to rotate, zoom, and pan across different views, crucial for a comprehensive understanding of spatial relationships and model accuracy.
-\end{itemize}
-
+This tab provides a dynamic 3D visualization space where users can interact with the models.
+\vspace{-15pt}
 \subsubsection{3D View Tab Detailed Description}
-The \texttt{ThreeDViewTab} class is the most important tab of the GUI, designed to provide dynamic and interactive 3D visualizations of the simulated environment. This tab is instrumental in assessing the accuracy and spatial relationships of the models within the simulation. Here are its detailed functionalities:
-
-\paragraph{GUI Components}
-\begin{enumerate}
-    \item \textbf{Paned Window Setup}: Divides the main area into two sections — one for the list of shapes and another for displaying the 3D plot, enhancing user interaction and spatial management.
-    \item \textbf{List Frame}: Shows all added shapes and provides buttons for operations like clearing shapes, deleting selected shapes, editing parameters, and calculating intersections, facilitating quick access and management.
-    \item \textbf{Shape List}: A TreeView widget that categorizes and displays shapes by type, enabling easy selection and state updates.
-    \item \textbf{Matplotlib Figure and Canvas}: Integrates a Matplotlib 3D plot within the Tkinter environment, rendering detailed graphical representations of the shapes.
-\end{enumerate}
-
+\vspace{-8pt}
+The \texttt{ThreeDViewTab} class is the most important tab of the GUI, designed to provide interactive 3D visualizations of the simulated environment. This tab is important to assess the accuracy and spatial relationships of the models within the simulation. It integrates a Matplotlib 3D plot within the interface and renders graphical representation of the shapes.
+\vspace{-15pt}
 \paragraph{Interaction and Visualization}
 \begin{itemize}
+    \setlength{\itemsep}{0.1mm}
     \item \textbf{Shape Manipulation Methods}: Includes adding new shapes, drawing updates on the Matplotlib canvas, and managing shape deletions — all reflected visually in real-time.
     \item \textbf{Interactive Features}: Allows users to interact with the 3D models via mouse and keyboard inputs to rotate, zoom, and pan across different views, providing a comprehensive understanding of the model's geometry and spatial properties.
 \end{itemize}
-
+\vspace{-15pt}
 \paragraph{Utility Functions}
 \begin{itemize}
-    \item \textbf{Update Button State}: Dynamically adjusts the state of GUI controls based on the context (e.g., whether shapes are present or a particular shape is selected).
-    \item \textbf{Calculate Intersections}: Uses computational functions to determine and visualize intersections between different shapes, enhancing the analytical capabilities of the tool.
+    \item \textbf{Update States}: Dynamically adjusts the state of GUI controls based on the context (e.g., whether shapes are present or a particular shape is selected).
+    \item \textbf{Calculate Intersections}: Uses the intersection function as described above to determine and visualize intersections between different shapes.
 \end{itemize}
-
+\vspace{-15pt}
 \subsubsection{Reconstruction GUI Components}
-
-The \texttt{gui\_HelpTab.py} and the \texttt{gui\_LogTab.py} have the same functionalities as above, so I will discuss them here.
-
+\vspace{-8pt}
+The \texttt{Help Tab} and the \texttt{Log Tab} have the same functionalities as above, so I won't discuss them here.
+\vspace{-15pt}
 \paragraph{Image Processing Tab}
-The \texttt{gui\_ImageProcessingTab.py} class extends the capabilities of the graphical user interface by incorporating image processing techniques.
+The \texttt{Image Processing Tab} class extends the capabilities of the graphical user interface by incorporating image processing techniques.
 
-\begin{itemize}
-    \item \textbf{Fourier Transforms:} This tab utilizes the Fourier transform, a mathematical technique that transforms spatial data into frequency data. This is crucial for identifying periodic structures and anomalies in images, as well as for noise reduction and image enhancement.
+\begin{enumerate}
+    \setlength{\itemsep}{0.1mm}
+    \item \textbf{Fourier Transforms:} This tab utilizes the Fourier transform, a mathematical technique that transforms spatial data into frequency data. This is crucial for identifying periodic structures in images, as well as for noise reduction and image enhancement.
     
-    \item \textbf{Frequency Filtering:} After transforming the image to the frequency domain, specific frequencies can be isolated or suppressed to enhance certain image features or remove unwanted artifacts. This process involves applying a mask to the Fourier transform of the image that selectively retains or removes certain frequencies.
+    \item \textbf{Frequency Filtering:} After transforming the image to the frequency domain, specific frequencies like the carrier frequency can be isolated or suppressed to enhance certain image features or remove unwanted artifacts. This process involves applying a mask to the Fourier transform of the image that selectively retains or removes certain frequencies.
     
-    \item \textbf{Phase Extraction:} This feature extracts the phase from the complex representation of the Fourier-transformed image. The phase of an image often carries important structural information that is not visible in the amplitude alone. Extracting and analyzing the phase is essential for applications such as digital holography, where it can be used to reconstruct three-dimensional shapes from two-dimensional recordings.
+    \item \textbf{Phase Extraction:} This feature extracts the phase from the complex representation of the Fourier-transformed image. The phase of the image carries important structural information that is not visible in the amplitude alone. Extracting and analyzing the phase is essential to reconstruct three-dimensional shapes from two-dimensional images.
     
     \item \textbf{Phase Unwrapping:} Phase images, by nature, are wrapped around a 2$\pi$ interval which creates discontinuities that can complicate further analysis. Phase unwrapping corrects these discontinuities to produce a continuous phase map that accurately represents changes across the image.
     
@@ -105,6 +94,6 @@ The \texttt{gui\_ImageProcessingTab.py} class extends the capabilities of the gr
     \item \textbf{Height Map Smoothing:} The calculated height maps can often contain noise and other high-frequency components that obscure the true surface features. Smoothing, typically using Gaussian filters, helps to mitigate these effects, enhancing the visual quality and interpretability of the height maps.
     
     \item \textbf{Visualization and Interaction:} Integration with \texttt{matplotlib} for visualizing results allows users to see the processed images in various forms, including 3D plots of height maps. This interactive visualization aids in the qualitative analysis of the data and provides a dynamic way to explore the impact of different processing parameters.
-\end{itemize}
+\end{enumerate}
 
 \end{document}
