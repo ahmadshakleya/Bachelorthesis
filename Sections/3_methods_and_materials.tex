@@ -14,18 +14,87 @@ Initially, the simulation of optical flat measurements was attempted using a ray
 \vspace{-15pt}
 \section{Successful Simulation Using Python}
 \vspace{-15pt}
-After the initial setbacks, a more successful simulation was developed using Python. This method utilized the concept of intersecting planes with the surface under test (sft). Each plane was separated by half the wavelength of the light transmitted through the optical flat, allowing for the simulation of interference patterns by modeling how these planes interact with the sft irregularities.
+After the initial setbacks, a more successful simulation was developed using Python. This method utilized the concept of intersecting planes with the surface under test (sft) (see figure \ref{fig:planes_intersection}). Each plane was separated by half the wavelength of the light transmitted through the optical flat, allowing for the simulation of interference patterns by modeling how these planes interact with the sft irregularities as can be seen in figure \ref{fig:fringes}.
 \vspace{-15pt}
+\begin{figure}[H]
+    \centering
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{Images/Methods/planes}
+        \caption{
+            The blue area at the top represents an optical flat placed over a test surface shown in grey. The white lines, spaced half a wavelength apart, are interference fringes. These fringes form at points where the height difference between the optical flat and the surface matches multiples of half the light's wavelength. The pattern of these fringes reveals the topography of the surface beneath the flat. Figure taken from \cite{youtube}.}
+        \label{fig:planes_intersection}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Images/Methods/planes_fringee}
+        \caption{A 3D model with an optical flat above a test surface and a 2D projection. Red lines represent light rays reflecting at different gaps between the optical flat and the surface. These variations are visible in the 2D "Optical Flat View" as concentric circular fringes, each indicating a constant air gap. This method precisely measures the deviations in surface flatness, with each ring in the diagram quantifying specific irregularities. Figure taken from \cite{youtube}.}
+        \label{fig:fringes}
+    \end{minipage}
+\end{figure}
+\vspace{-35pt}
 \subsection{Backend Development: Python Scripts}
 \vspace{-10pt}
 To implement this method, several Python scripts were created:
 \vspace{-4pt}
 \begin{itemize}
     \setlength{\itemsep}{0.1mm}
-    \item \textbf{Intersection} - Handles the mathematical computation of plane and surface intersections, critical for modeling how light interacts with different surfaces.
+    \item \textbf{Intersection} - This function, as can be seen in figure \ref{fig:flowchart1}, handles the mathematical computation of plane and surface intersections, critical for modeling how light interacts with different surfaces.
     \item \textbf{Disk, Cylinder, Flat\_surface, Shape3D, STLFigure} - These classes contribute to generating and handling various geometrical shapes and rendering the final 3D images which represent the simulation results.
 \end{itemize}
-\vspace{-15pt}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=1cm, minimum height=1cm,text centered, draw=black, fill=red!30, font=\scriptsize]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\vspace{-8pt}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.75, transform shape, node distance=1cm, auto]
+    % Styles for flowchart elements
+    \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=0.5cm, minimum height=0.5cm,text centered, draw=black, fill=red!30, font=\footnotesize]
+    \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=0.5cm, minimum height=0.5cm, text centered, draw=black, fill=blue!30, font=\footnotesize]
+    \tikzstyle{process} = [rectangle, minimum width=0.5cm, minimum height=0.5cm, text centered, draw=black, fill=orange!30, font=\footnotesize]
+    \tikzstyle{decision} = [diamond, minimum width=0.5cm, minimum height=0.2cm, text centered, draw=black, fill=green!30, font=\footnotesize]
+    \tikzstyle{arrow} = [thick,->,>=stealth]
+    
+    % Nodes
+    \node (start) [startstop, xshift=-4cm] {Start};
+    \node (in1) [io, below of=start, yshift=-1cm] {Input: shape1, shape2};
+    \node (pro1) [process, below of=in1, yshift=-1cm] {Get surface points for both shapes};
+
+    \node (dec1) [decision, right of=start, xshift=5cm] {Point within surface bounds?};
+    \node (pro2a) [process, below of=dec1, yshift=-1.8cm] {Find closest indices in surface grid};
+    \node (dec2) [decision, below of=pro2a, yshift=-1.5cm] {Z-value intersection?};
+
+    \node (pro2b) [process, right of=dec1, xshift=4cm] {Record intersection point};
+    \node (out1) [io, below of=pro2b, yshift=-1cm] {Output: intersection points};
+    \node (stop) [startstop, below of=out1, yshift=-1cm] {Stop};
+    
+    % Arrows
+    \draw [arrow] (start) -- (in1);
+    \draw [arrow] (in1) -- (pro1);
+    \draw [arrow] (pro1.north east) -- ++(0,3.7) node[anchor=east] {} -- (dec1.west);
+    \draw [arrow] (dec1) -- node[anchor=east] {yes} (pro2a);
+    \draw [arrow] (dec1.south west) -- ++(-2,0) node[anchor=north, xshift=0.5cm] {no} -- ++(0,-3) node[anchor=west] {} -- (pro1.east);
+    \draw [arrow] (pro2a) -- (dec2);
+    \draw [arrow] (dec2.east) -- ++(1,0) node[anchor=south, xshift=-0.5cm] {yes} -- ++(0,5.3) node[anchor=west] {} -- (pro2b.west);
+    \draw [arrow] (dec2.west) -- ++(-1,0) node[anchor=south, xshift=0.5cm] {no} |- (pro2a.west);
+    \draw [arrow] (pro2b) -- (out1);
+    \draw [arrow] (out1) -- (stop);
+    
+    \end{tikzpicture}
+    \vspace{-8pt}
+    \caption{Flowchart of the intersection function: initially, it extracts the $x$, $y$, and $z$ coordinates from both (\texttt{shape1}) and (\texttt{shape2}) using their \texttt{get\_surface()} methods. Lists are then initialized to store the coordinates of the intersection points. The function determines the bounds of (\texttt{shape1}) and iterates over each (\texttt{shape2}) point, checking if it lies within these bounds. For each in-bound point, it identifies the closest surface points in the $x$ and $y$ dimensions. If a (\texttt{shape2's}) $z$-value matches closely with the $z$-value at these points, within a tolerance of $\pm0.01$, the point is recorded as an intersection. The function ultimately returns these intersection points as NumPy arrays.
+    }
+    \label{fig:flowchart1}
+\end{figure}
+
+\vspace{-25pt}
 \subsection{Frontend Development: Graphical User Interface (GUI)}
 \vspace{-15pt}
 A comprehensive GUI developed through \texttt{Gui.py} facilitates user interaction with the simulation, allowing for real-time adjustments and visualization of results. The GUI is structured into several functional tabs, each enhancing usability and educational value. Screenshots of the GUI can be found in the appendix.
