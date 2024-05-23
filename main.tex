@@ -33,6 +33,7 @@
 \usepackage{setspace}
 \usepackage{wrapfig}
 \usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{enumitem}
 
 
 \graphicspath{./Images/}
@@ -49,11 +50,10 @@
 \begin{document}
     \maketitle
     \frontmatter
-    \tableofcontents
     \mainmatter
-    \subfile{Sections/Preamble_own}
     \subfile{Sections/0_abstract}
     \subfile{Sections/2_research_questions}
+    \tableofcontents
     \setstretch{0.1} % 
     \subfile{Sections/1_introduction}
     \subfile{Sections/3_methods_and_materials}

@@ -7,21 +7,25 @@
 {\let\clearpage\relax\chapter{Discussion}}
 
 \section{Research Goals}
+\vspace{-15pt}
 As highlighted in the introduction, the primary objective of this research was to develop a robust simulation and reconstruction tool capable of accurately modeling and analyzing optical flat measurements. The simulation results demonstrated that the Python-based modules could successfully replicate realistic optical interactions and interference patterns. This aligns well with the project's aim, as stated in our initial research questions.
 
 The method of using planes separated by specific intervals corresponding to the light wavelength proved effective in simulating the necessary conditions to study optical flats. The Python environment, complemented by a user-friendly GUI, enhanced the flexibility and accessibility of the simulation, making it a robust tool for both educational and research applications in optical measurements.
 
 The ability to reconstruct accurate phase maps and 3D surface topographies from both simulated and real-world data underlines the effectiveness of the Fourier Transform methods and phase unwrapping techniques employed. These results directly correlate with the approaches discussed in the Methods and Materials section, where the integration of image processing algorithms was used to significantly improve the accuracy and reliability of optical flat measurement analysis.
-
+\vspace{-15pt}
 \section{Representativeness and Limitations of 3D Reconstruction}
+\vspace{-15pt}
 Despite the successes, the 3D reconstruction process was not fully representative in some aspects. This was partly due to the limits of the hardware used, which could not always capture the full depth and detail required for a fully representative fringe model unless it takes too long to compute.. This limitation is due to the hardware. Additionally, the software uses a binary representation for the interference fringes, in which there are sharp transitions between dark fringes and bright fringes. This causes the 3D representation to show sharp transistions.
 
 Moreover, the lack of evaluation against known standards or real samples, as noted in the Results section, prevented a thorough validation of the representativeness of the reconstructed models. This evaluation should indicate that the methods are designed to minimize errors of the simulations and reconstructions. Iterative testing and refining of the simulation parameters should show that they closely align with actual measurements.
-
-\section{Future Directions}
+\vspace{-15pt}
+\section{Future Research}
+\vspace{-15pt}
 To address these limitations, future research could focus on integrating multi-modal imaging techniques that combine optical measurements with other forms of data acquisition, such as a deflectometer or a CMM, to enhance the depth and accuracy of the 3D reconstructions. Also, more interference fringes could be simulated using not only intersections with planes at half the wavelength used, but also the in between values.
-
+\vspace{-15pt}
 \section{Conclusion}
+\vspace{-15pt}
 The application successfully demonstrated its capability in both simulating and reconstructing optical flat measurements, supported by a user-friendly and powerful graphical interface. Future work will focus on expanding the range of simulations.
 
 Although we initially lost a lot of time developing a ray-tracing engine to incorporate light interference phenomena, we did not succeed. We have found a solution that is very close to reality and very versatile. With STL file support, any optical flat measurement can be modeled, provided the STL file of the surface under test is available. 

@@ -141,7 +141,7 @@ The \texttt{ThreeDViewTab} class is the most important tab of the GUI, designed 
     \item \textbf{Calculate Intersections}: Uses the intersection function as described above to determine and visualize intersections between different shapes.
 \end{itemize}
 \vspace{-15pt}
-\subsubsection{Reconstruction GUI Components}
+\section{Reconstruction}
 \vspace{-8pt}
 The \texttt{Help Tab} and the \texttt{Log Tab} have the same functionalities as above, so I won't discuss them here.
 \vspace{-15pt}
@@ -149,7 +149,7 @@ The \texttt{Help Tab} and the \texttt{Log Tab} have the same functionalities as 
 The \texttt{Image Processing Tab} class extends the capabilities of the graphical user interface by incorporating image processing techniques.
 
 \begin{enumerate}
-    \setlength{\itemsep}{0.1mm}
+    \setlength{\parskip}{3pt}
     \item \textbf{Fourier Transforms:} This tab utilizes the Fourier transform, a mathematical technique that transforms spatial data into frequency data. This is crucial for identifying periodic structures in images, as well as for noise reduction and image enhancement.
     
     \item \textbf{Frequency Filtering:} After transforming the image to the frequency domain, specific frequencies like the carrier frequency can be isolated or suppressed to enhance certain image features or remove unwanted artifacts. This process involves applying a mask to the Fourier transform of the image that selectively retains or removes certain frequencies.
@@ -160,7 +160,7 @@ The \texttt{Image Processing Tab} class extends the capabilities of the graphica
     
     \item \textbf{Height Map Calculation:} Utilizing the unwrapped phase, this function calculates height maps from phase images, where the optical path difference at each pixel translates to physical height variations. This is particularly useful in surface profilometry and interferometric microscopy.
     
-    \item \textbf{Height Map Smoothing:} The calculated height maps can often contain noise and other high-frequency components that obscure the true surface features. Smoothing, typically using Gaussian filters, helps to mitigate these effects, enhancing the visual quality and interpretability of the height maps.
+    \item \textbf{Height Map Smoothing:} The calculated height maps can often contain noise and other high-frequency components that obscure the true surface features. Smoothing, using a Gaussian filter, helps to mitigate these effects, enhancing the visual quality and interpretability of the height maps.
     
     \item \textbf{Visualization and Interaction:} Integration with \texttt{matplotlib} for visualizing results allows users to see the processed images in various forms, including 3D plots of height maps. This interactive visualization aids in the qualitative analysis of the data and provides a dynamic way to explore the impact of different processing parameters.
 \end{enumerate}
