@@ -28,19 +28,50 @@ The integration of phase unwrapping and height map calculation features within t
 \end{minipage}
 \subsection{Surface Topography Visualization}
 \vspace{-15pt}
-The GUI's 3D view tab provides an interactive visualization of reconstructed surfaces. We could manipulate the view to better understand the topographical details of the surface being studied. An example of a reconstructed surface is shown in Figure \ref{fig:topography}.\\
+The GUI's 3D view tab provides an interactive visualization of reconstructed surfaces. We could manipulate the view to better understand the topographical details of the surface being studied. An example of a reconstructed surface is shown in figure \ref{fig:Cylinder_reconstruction}. At the left, we see the surface of a cylinder with a radius of 2 (figure \ref{fig:Cylinder_sideview}). At the right, you can see the reconstructed surface: planes are used to reconstruct the surface. Although the minimal and maximal values of the reconstruction (respectively -7.72 and 7.82) do not correspond well with the dimensions of the cylinder, we can clearly see that the overall curvature is what we expect to see.\\
+\vspace{-15pt}
 \begin{figure}[H]
     \centering
-    %\hspace{4cm}
-    \includegraphics[width=0.8\textwidth, trim={1cm 1cm 1cm 1cm}, clip]{Images/Results/3D_reconstructie}
-    %\hspace{2cm}
-    \caption{3D visualization of surface topography as reconstructed by the application. On the left, you see an optical flat measurement and on the right there is the 3D surface view associated with it.}
-    \label{fig:topography}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{Images/Results/Cylinder_sideview}
+        \caption{Side view of the original cylindrical object, used for simulation input.}
+        \label{fig:Cylinder_sideview}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Images/Results/Cylinder_reconstruction}
+        \caption{3D reconstruction of the cylindrical surface, showing the curvature of surface shape.}
+        \label{fig:Cylinder_reconstruction}
+    \end{minipage}
 \end{figure}
-\vspace{-25pt}
+\vspace{-15pt}
+
+Further, we assess a flat surface reconstruction where the fringe patterns indicate a perfect flatness due to straight and parallel lines (see figure \ref{fig:Flat_surface_fringes}). The corresponding reconstruction, depicted figure \ref{fig:Flatsurface_recon}, accurately reflects this flatness. In this case there is no error, because of the fact that the sharpness of the edges of the fringes can't influence the curvature: there is no curvature in a flat surface.
+\begin{figure}[H]
+    \centering
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.2\linewidth]{Images/Results/Flat_surface_fringes}
+        \caption{Fringe pattern of a perfectly flat surface. The red dot depicts the place of the hinge of the optical flat.}
+        \label{fig:Flat_surface_fringes}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Images/Results/Flatsurface_recon}
+        \caption{3D reconstruction of the flat surface, showing perfect flatness.}
+        \label{fig:Flatsurface_recon}
+    \end{minipage}
+\end{figure}
+\vspace{-15pt}
+
 \section{Representativeness of Simulation and Reconstruction}
 \vspace{-15pt}
-The representativeness of the simulations and reconstructions was not evaluated due to lack of time. %This could be done by comparing the generated models and extracted data against known standards and real samples. This evaluation indicates that the methods are designed to minimize errors and enhance the accuracy of the simulations. Iterative testing and refining of the simulation parameters should show that they closely align with actual measurements.
+The quantitative representativeness of the simulations and reconstructions was not evaluated due to lack of time. Instead, we only examined the reconstruction qualitatively by visually comparing the curvature of different shapes. %This could be done by comparing the generated models and extracted data against known standards and real samples. This evaluation indicates that the methods are designed to minimize errors and enhance the accuracy of the simulations. Iterative testing and refining of the simulation parameters should show that they closely align with actual measurements.
 
 
 \end{document}

@@ -16,13 +16,17 @@ The ability to reconstruct accurate phase maps and 3D surface topographies from 
 \vspace{-15pt}
 \section{Representativeness and Limitations of 3D Reconstruction}
 \vspace{-15pt}
-Despite the successes, the 3D reconstruction process was not fully representative in some aspects. This was partly due to the limits of the hardware used, which could not always capture the full depth and detail required for a fully representative fringe model unless it takes too long to compute.. This limitation is due to the hardware. Additionally, the software uses a binary representation for the interference fringes, in which there are sharp transitions between dark fringes and bright fringes. This causes the 3D representation to show sharp transistions.
+Despite the successes, the 3D reconstruction process was not fully representative in some aspects. This was partly due to the limits of the hardware used, which could not always capture the full depth and detail required for a fully representative fringe model unless it takes too long to compute. This limitation is due to the hardware. Additionally, the software uses a binary representation for the interference fringes, in which there are sharp transitions between dark fringes and bright fringes. This causes the 3D representation to show sharp transitions.
 
 Moreover, the lack of evaluation against known standards or real samples, as noted in the Results section, prevented a thorough validation of the representativeness of the reconstructed models. This evaluation should indicate that the methods are designed to minimize errors of the simulations and reconstructions. Iterative testing and refining of the simulation parameters should show that they closely align with actual measurements.
+
+Moreover, the lack of a quantitative evaluation due to time constraints means that our assessments were only qualitative, based on visual inspection and comparison of different curves and shapes. While these reconstructions are generally accurate within the acknowledged limitations, we still need quantitative data to definitely say if the simulations and reconstructions are representative.
 \vspace{-15pt}
 \section{Future Research}
 \vspace{-15pt}
 To address these limitations, future research could focus on integrating multi-modal imaging techniques that combine optical measurements with other forms of data acquisition, such as a deflectometer or a CMM, to enhance the depth and accuracy of the 3D reconstructions. Also, more interference fringes could be simulated using not only intersections with planes at half the wavelength used, but also the in between values.
+
+Additionally, future iterations of this project should include a quantitative analysis to verify the simulations and reconstructions. This approach would also help to more precisely quantify the impact of the binary representation of interference fringes on the accuracy of surface reconstructions.
 \vspace{-15pt}
 \section{Conclusion}
 \vspace{-15pt}
